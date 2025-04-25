@@ -10,11 +10,18 @@ const Review = require("./review.js"); // your mongoose model
 const app = express();
 const PORT = 3000;
 
-// 1) Connect to MongoDB
+// OLD
+// mongoose.connect("mongodb://127.0.0.1:27017/reviewDB", { … });
+
+// NEW
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+  // these options are no longer needed on >=4.0, you can remove them
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
+})
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
+
 
 
 // 2) Middleware
