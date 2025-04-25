@@ -1,42 +1,35 @@
 // server.js
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 
-const Review = require("./review.js"); // your mongoose model
+const Review = require("./review.js"); // your Mongoose model
 
 const app = express();
-const PORT = 3000;
 
-// OLD
-// mongoose.connect("mongodb://127.0.0.1:27017/reviewDB", { … });
+// ———— REQUIRED ENV VARS ————
+const { PORT, MONGO_URI } = process.env;
+if (!PORT || !MONGO_URI) {
+  console.error("❌ Missing required env vars. Ensure PORT and MONGO_URI are set.");
+  process.exit(1);
+}
 
-// NEW
-mongoose.connect(process.env.MONGO_URI, {
-  // these options are no longer needed on >=4.0, you can remove them
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
-})
+// ———— CONNECT TO MONGODB ATLAS ————
+mongoose
+  .connect(MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1);
+  });
 
-
-
-// 2) Middleware
+// ———— MIDDLEWARE ————
 app.use(cors());
-app.use(bodyParser.json());
-
-// 3) Serve static files (all HTML/CSS/JS in this folder)
+app.use(express.json());
 app.use(express.static(__dirname));
 
-// 4) Send index.html on root request
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-// 5) API endpoints
+// ———— API ENDPOINTS ————
 app.get("/api/reviews", async (req, res) => {
   try {
     const reviews = await Review.find().sort({ date: -1 });
@@ -57,7 +50,7 @@ app.post("/api/reviews", async (req, res) => {
   }
 });
 
-// 6) Start the server
+// ———— START SERVER ————
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
