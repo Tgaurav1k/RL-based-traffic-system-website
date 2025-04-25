@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Traffic Signal Control - Download & Review</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Adaptive Traffic Signal Control</h1>
+            <p>An AI-driven solution for optimizing traffic flow using Reinforcement Learning.</p>
+        </header>
+
+        <section class="project-intro">
+            <h2>About</h2>
+            <p>This project leverages AI and Reinforcement Learning to dynamically adjust traffic signals based on real-time congestion data. The system aims to reduce traffic jams, improve road efficiency, and enhance commuter experiences.</p>
+            <div class="highlights">
+                <div class="highlight">
+                    <h3>🛣️ Real-Time Adaptation</h3>
+                    <p>Signals adjust dynamically based on live traffic conditions.</p>
+                </div>
+                <div class="highlight">
+                    <h3>🚦 Smart Decision Making</h3>
+                    <p>Uses AI models to optimize signal timings for better flow.</p>
+                </div>
+                <div class="highlight">
+                    <h3>📊 Performance Analytics</h3>
+                    <p>Provides insights into traffic patterns and system efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="download-section">
+            <h2>Download</h2>
+            <p>Get the full project files and explore how AI can revolutionize traffic control.</p>
+            <a href="https://drive.google.com/file/d/1vti0c9EuO-tY2w82PMkgcZ1bjAVYbpNg/view?usp=sharing" id="download-button" download>
+                <button>Download ZIP</button>
+            </a>
+        </section>
+
+        <section class="review-section">
+            <h2>Leave a Review</h2>
+            <p>We value your feedback! Share your thoughts on the project.</p>
+
+            <div class="stars-inline" id="star-container">
+                <span class="star" data-stars="1"></span>
+                <span class="star" data-stars="2">☆</span>
+                <span class="star" data-stars="3">☆</span>
+                <span class="star" data-stars="4">☆</span>
+                <span class="star" data-stars="5">☆</span>
+                <span class="star" data-stars="5">☆</span>
+            </div>
+
+            <input type="hidden" id="review-rating">
+            <textarea id="review" rows="4" placeholder="Write your review..."></textarea>
+            <br>
+            <button onclick="submitReview()">Submit Review</button>
+            <p id="review-message" style="display: none;">Thank you for your review!</p>
+
+            <div class="review-list" id="review-list">
+                <h3>Recent Reviews:</h3>
+            </div>
+        </section>
+
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="review.js"></script>
+    <script src="server.js"></script>
+</body>
+</html>
+
+
