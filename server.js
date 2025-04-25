@@ -11,13 +11,11 @@ const app = express();
 const PORT = 3000;
 
 // 1) Connect to MongoDB
-mongoose
-  .connect("mongodb://127.0.0.1:27017/reviewDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error(err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 
 // 2) Middleware
 app.use(cors());
